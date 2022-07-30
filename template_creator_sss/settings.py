@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 CKEDITOR_CONFIGS = {
     'default': {
         'height': 'full',
-        'width': "full",
+        'width': 'full',
         'uiColor': '#fad8a5',
     },
 }
