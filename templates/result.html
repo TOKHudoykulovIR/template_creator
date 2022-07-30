@@ -1,0 +1,244 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📄 PDF-ready</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        td, th {
+            border: 1px solid black;
+            text-align: left;
+            padding: 2px;
+        }
+        th {
+            background-color: lightgrey;
+	        color: black;
+        }
+
+
+        table {
+          table-layout: fixed;
+        }
+
+        th, td {
+          overflow: hidden;
+        }
+
+
+        .footer-col {
+            border: none;
+        }
+
+        @page {
+            size: a4 portrait;
+            @frame content_frame {          /* Content Frame */
+                left: 40pt;  width: 512pt;  top: 40pt;  height: 632pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 70pt; width: 512pt; top: 770pt; height: 100pt;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<p>{{ data.id }}</p>
+
+<p style="text-align: center; font-size: 1em">{{ data.guest_num }} GUESTS</p>
+<table>
+    <thead>
+    <tr>
+        <th>CLIENT</th>
+        <th>CLIENT ADDRESS</th>
+        <th>CLIENT PHONE</th>
+        <th>CLIENT EMAIL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ data.client }}</td>
+        <td>{{ data.client_contact }}</td>
+        <td>{{ data.client_phone }}</td>
+        <td>{{ data.client_email }}</td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+        <th>VENUE</th>
+        <th>VENUE ADDRESS</th>
+        <th>VENUE PHONE</th>
+        <th>VENUE EMAIL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ data.venue }}</td>
+        <td>{{ data.venue_contact }}</td>
+        <td>{{ data.venue_phone }}</td>
+        <td>{{ data.venue_email }}</td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+        <th>EVENT TYPE (DINNER ETC)</th>
+        <th>EVENT MANAGER</th>
+        <th>EVENT PLANNER</th>
+        <th>GUEST NUMBERS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ data.event_type_dinner_etc }}</td>
+        <td>{{ data.event_manager }}</td>
+        <td>{{ data.event_planner }}</td>
+        <td>{{ data.guest_num }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<table style="margin: 20px 0 20px 0">
+    <thead>
+    <tr>
+        <th>TIMINGS</th>
+        <th>ACTION</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for m in meta %}
+        <tr>
+            <td>{{ m.timings }}</td>
+            <td>{{ m.action }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th>FOOD LEAVES:</th>
+        <th>CHEFS LEAVE:</th>
+        <th>PORTERS LEAVE:</th>
+        <th>TOTAL WAITERS:</th>
+        <th style="width: 30%">DIETARIES:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ data.food_leaves }}</td>
+        <td>{{ data.chefs_leave }}</td>
+        <td>{{ data.porters_leave }}</td>
+        <td>{{ data.total_waiters }}</td>
+        {% if data.dietaries %}
+            <td rowspan="3">{{ data.dietaries|safe }}</td>
+        {% else %}
+            <td rowspan="3">TBC</td>
+        {% endif %}
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+        <th>FOOD ARRIVE:</th>
+        <th>CHEFS ARRIVE:</th>
+        <th>PORTERS ARRIVES:</th>
+        <th>TOTAL CHEFS:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ data.food_arrive }}</td>
+        <td>{{ data.chefs_arrive }}</td>
+        <td>{{ data.porter_arrives }}</td>
+        <td>{{ data.total_chefs }}</td>
+    </tr>
+    <tr>
+        <td colspan="5"><i style="text-align: center; font-size: 1.2em;">Menu:</i>{{ data.menu|safe }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="page">
+<table style="page-break-before: always">
+    <caption>MISCELLANEOUS FROM THE KITCHEN:</caption>
+    <thead></thead>
+    <tbody>
+    <tr>
+        <th style="width: 20%">STAFF FOOD</th>
+        <td>{{ data.staff_food }}</td>
+    </tr>
+    <tr>
+        <th>DRINKS GARNISHES</th>
+        <td>{{ data.drinks_garnishes }}</td>
+    </tr>
+    <tr>
+        <th>DRUGGETT AND TAPE</th>
+        <td>{{ data.druggett_and_tape }}</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <caption>FURNITURE:</caption>
+    <thead>
+    <tr>
+        <th><!-- Intentionally Blank --></th>
+        <th>QUANTITY</th>
+        <th>SUPPLIED BY</th>
+        <th>LOCATION / PURPOSE</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for form in furniture %}
+        {% if form.row_header == 't' %}
+            <tr>
+                <th>TABLES</th>
+                <td>{{ form.quantity }}</td>
+                <td>{{ form.supplied_by }}</td>
+                <td>{{ form.location_purpose }}</td>
+            </tr>
+        {% elif form.row_header == 'tl' %}
+            <tr>
+                <th>TABLE LINEN</th>
+                <td>{{ form.quantity }}</td>
+                <td>{{ form.supplied_by }}</td>
+                <td>{{ form.location_purpose }}</td>
+            </tr>
+        {% elif form.row_header == 'n' %}
+            <tr>
+                <th>NAPKINS</th>
+                <td>{{ form.quantity }}</td>
+                <td>{{ form.supplied_by }}</td>
+                <td>{{ form.location_purpose }}</td>
+            </tr>
+        {% elif form.row_header == 'd' %}
+            <tr>
+                <th>DISPOSABLE NAPKINS</th>
+                <td>{{ form.quantity }}</td>
+                <td>{{ form.supplied_by }}</td>
+                <td>{{ form.location_purpose }}</td>
+            </tr>
+            </tbody>
+        {% endif %}
+    {% endfor %}
+</table>
+
+
+<table id="footer_content" class="footer-table">
+    <tr class="footer-row">
+        <td class="footer-col" style="margin-left: 80px"><img src="left.png" width="180px" height="auto" alt="None"></td>
+        <td class="footer-col" style="width: 130px"><img src="logo_main.png" width="130px" height="auto" alt="None"></td>
+        <td class="footer-col" style="width: 310px"><img src="right.png" width="180px" height="auto" alt="None"></td>
+    </tr>
+</table>
+</div>
+
+</body>
+</html>

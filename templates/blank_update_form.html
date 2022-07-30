@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .form-container {
+            padding: 32px;
+            margin-right: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px #ccc;
+            font-family: sans-serif;
+            letter-spacing: 1px;
+            background: rgb(234, 248, 230);
+        }
+
+
+    </style>
+    <div align="center">
+        <h3>Update Template - {{ blank.id }}</h3><br>
+        <form action="" method=POST>{% csrf_token %}
+            {{ form.media }}
+            <div class="d-flex justify-content-center">
+                <div class="form-container" style="width: auto">
+                    <div class="d-flex flex-wrap">
+                        <div class="p-2">Client: {{ form.client }}</div>
+                        <div class="p-2">Client Address: {{ form.client_contact }}</div>
+                        <div class="p-2">Client Phone: {{ form.client_phone }}</div>
+                        <div class="p-2">Client Email: {{ form.client_email }}</div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-container" style="width: auto">
+                    <div class="d-flex flex-wrap">
+                        <div class="p-2">Venue: {{ form.venue }}</div>
+                        <div class="p-2">Venue Address: {{ form.venue_contact }}</div>
+                        <div class="p-2">Venue Phone: {{ form.venue_phone }}</div>
+                        <div class="p-2">Venue Email: {{ form.venue_email }}</div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-container" style="width: auto">
+                    <div class="d-flex flex-wrap">
+                        <div class="p-2">Event Manager: {{ form.event_manager }}</div>
+                        <div class="p-2">Event Type Dinner Etc: {{ form.event_type_dinner_etc }}</div>
+                        <div class="p-2">Event Planner: {{ form.event_planner }}</div>
+                        <div class="p-2">Guest Number: {{ form.guest_num }}</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="d-flex justify-content-center">
+                <div class="form-container" style="width: 430px">
+                    <div class="d-flex flex-wrap">
+                        <div class="p-2">Food Leaves: {{ form.food_leaves }}</div>
+                        <div class="p-2">Chefs Leave: {{ form.chefs_leave }}</div>
+                        <div class="p-2">Porters Leave: {{ form.porters_leave }}</div>
+                        <div class="p-2">Total Waiters: {{ form.total_waiters }}</div>
+                        {#                            <div class="p-2">Dietaries: {{ form.dietaries }}</div>#}
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-container" style="width: 430px">
+                    <div class="d-flex flex-wrap">
+                        <div class="p-2">Food Arrive: {{ form.food_arrive }}</div>
+                        <div class="p-2">Chefs Arrive: {{ form.chefs_arrive }}</div>
+                        <div class="p-2">Porter Arrives: {{ form.porter_arrives }}</div>
+                        <div class="p-2">Total Chefs: {{ form.total_chefs }}</div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-container" style="width: 430px">
+                    {#                        <label class="form-label">MISCELLANEOUS FROM THE KITCHEN:</label>#}
+                    <div class="d-flex flex-wrap">
+                        <div class="p-2">Staff Food: {{ form.staff_food }}</div>
+                        <div class="p-2">Drinks Garnishes: {{ form.drinks_garnishes }}</div>
+                        <div class="p-2">Druggett And Tape: {{ form.druggett_and_tape }}</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+
+            {#            {{ formset.as_p }}#}
+            {#            {% for form in formset %}#}
+            {#                {% for hidden in form.hidden_fields %}#}
+            {#                    {{ hidden }}#}
+            {#                {% endfor %}#}
+            {#                <!-- form.visible fields go here -->#}
+            {#                {{ form.as_p }}#}
+            {#            {% endfor %}#}
+
+            {{ formset.management_form }}
+            <div class="d-flex justify-content-center">
+                {% for form in formset %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                    <div class="form-container" style="width: auto">
+                        <div class="d-flex flex-wrap">
+                            {% if forloop.counter0 == 0 %}
+                                <label class="form-label"><b>Table:</b></label>
+                            {% elif forloop.counter0 == 1 %}
+                                <label class="form-label"><b>Table Linen:</b></label>
+                            {% elif forloop.counter0 == 2 %}
+                                <label class="form-label"><b>Napkins:</b></label>
+                            {% elif forloop.counter0 == 3 %}
+                                <label class="form-label"><b>Disposable Napkins:</b></label>
+                            {% endif %}
+
+                            <div class="p-2" style="display: none">{{ form.row_header }}</div>
+                            <div class="p-2">Quantity: {{ form.quantity }}</div>
+                            <div class="p-2">Supplied By: {{ form.supplied_by }}</div>
+                            <div class="p-2">Location/Purpose: {{ form.location_purpose }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <br>
+            <div class="d-flex justify-content-center">
+                <div class="form-container" style="width: auto">
+                    <div class="d-flex">
+                        <div class="p-2">Dietaries: {{ form.dietaries }}</div>
+                        <div class="p-2">Menu: {{ form.menu }}</div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <br>
+            <input type="submit" value='Update' class="btn btn-success"><br><br>
+
+        </form>
+    </div>
+{% endblock %}

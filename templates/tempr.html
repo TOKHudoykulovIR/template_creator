@@ -1,0 +1,243 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📄 PDF-ready</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        td, th {
+            border: 1px solid black;
+            text-align: left;
+            padding: 2px;
+        }
+        th {
+            background-color: lightgrey;
+	        color: black;
+        }
+
+
+        table {
+          table-layout: fixed;
+        }
+
+        th, td {
+          overflow: hidden;
+        }
+
+
+        .footer-col {
+            border: none;
+        }
+
+        @page {
+            size: a4 portrait;
+            @frame content_frame {          /* Content Frame */
+                left: 40pt;  width: 512pt;  top: 40pt;  height: 632pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 70pt; width: 512pt; top: 770pt; height: 100pt;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<p>3</p>
+
+<p style="text-align: center; font-size: 1em">None GUESTS</p>
+<table>
+    <thead>
+    <tr>
+        <th>CLIENT</th>
+        <th>CLIENT ADDRESS</th>
+        <th>CLIENT PHONE</th>
+        <th>CLIENT EMAIL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+        <th>VENUE</th>
+        <th>VENUE ADDRESS</th>
+        <th>VENUE PHONE</th>
+        <th>VENUE EMAIL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+        <th>EVENT TYPE (DINNER ETC)</th>
+        <th>EVENT MANAGER</th>
+        <th>EVENT PLANNER</th>
+        <th>GUEST NUMBERS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>None</td>
+        <td>Sadriddin</td>
+        <td>Sadriddinooo</td>
+        <td>None</td>
+    </tr>
+    </tbody>
+</table>
+
+<table style="margin: 20px 0 20px 0">
+    <thead>
+    <tr>
+        <th>TIMINGS</th>
+        <th>ACTION</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th>FOOD LEAVES:</th>
+        <th>CHEFS LEAVE:</th>
+        <th>PORTERS LEAVE:</th>
+        <th>TOTAL WAITERS:</th>
+        <th style="width: 30%">DIETARIES:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+        
+            <td rowspan="3">TBC</td>
+        
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+        <th>FOOD ARRIVE:</th>
+        <th>CHEFS ARRIVE:</th>
+        <th>PORTERS ARRIVES:</th>
+        <th>TOTAL CHEFS:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td colspan="5"><i style="text-align: center; font-size: 1.2em;">Menu:</i></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="page">
+<table style="page-break-before: always">
+    <caption>MISCELLANEOUS FROM THE KITCHEN:</caption>
+    <thead></thead>
+    <tbody>
+    <tr>
+        <th style="width: 20%">STAFF FOOD</th>
+        <td>None</td>
+    </tr>
+    <tr>
+        <th>DRINKS GARNISHES</th>
+        <td>None</td>
+    </tr>
+    <tr>
+        <th>DRUGGETT AND TAPE</th>
+        <td>None</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <caption>FURNITURE:</caption>
+    <thead>
+    <tr>
+        <th><!-- Intentionally Blank --></th>
+        <th>QUANTITY</th>
+        <th>SUPPLIED BY</th>
+        <th>LOCATION / PURPOSE</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        
+            <tr>
+                <th>TABLES</th>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+            </tr>
+        
+    
+        
+            <tr>
+                <th>TABLE LINEN</th>
+                <td>11111</td>
+                <td>None</td>
+                <td>None</td>
+            </tr>
+        
+    
+        
+            <tr>
+                <th>NAPKINS</th>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+            </tr>
+        
+    
+        
+            <tr>
+                <th>DISPOSABLE NAPKINS</th>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+            </tr>
+            </tbody>
+        
+    
+</table>
+
+
+<table id="footer_content" class="footer-table">
+    <tr class="footer-row">
+        <td class="footer-col" style="margin-left: 80px"><img src="left.png" width="180px" height="auto" alt="None"></td>
+        <td class="footer-col" style="width: 130px"><img src="logo_main.png" width="130px" height="auto" alt="None"></td>
+        <td class="footer-col" style="width: 310px"><img src="right.png" width="180px" height="auto" alt="None"></td>
+    </tr>
+</table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if blanks %}
+            <h3 align="center">All Templates</h3>
+            <div style="margin: 20px 250px 20px 250px">
+            <table class="table table-hover">
+                {% for blank in blanks %}
+                    <tr>
+                        <td>
+{#                            <a href="{% url 'blank-detail' blank.id %}">TEMPLATE - #{{ blank.id }}</a>#}
+                            <p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 1 16 16" style="color: #4182db">
+                                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1h-4z"/>
+                                </svg>  Template - {{ blank.id }}|{{ blank.client }}|{{ blank.guest_num }}|{{ blank.event_manager }}
+                            </p>
+                        </td>
+                        {% if user.is_authenticated %}
+                            {% if user.is_superuser %}
+                                <td align="right" style="width: 140px">
+                                    <a href="{% url 'blank-pdf' blank.id %}" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z"/>
+                                        </svg></a>
+                                </td>
+                                <td align="right" style="width: 80px">
+                                    <a href="{% url 'blank-update' blank.id %}" class="btn btn-success" style="right: 40px"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td align="right" style="width: 80px">
+                                    <a href="{% url 'blank-delete' blank.id %}" class="btn btn-danger" style="right: 40px"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h3 align="center">You don't have templates yet</h3>
+        {% endif %}
+    {% else %}
+        <h3 align="center">Log in to see the list of templates</h3>
+    {% endif %}
+</div>
+    <br><br><br><br>
+    {#<!--#}
+    {#{{ venues }}<br>#}
+    {#Has privious: {{ venues.has_previous }}<br>#}
+    {#Has next: {{ venues.has_next }}<br>#}
+    {#Current: {{ venues.number }}<br>#}
+    {#Number of pages: {{ venues.paginator.num_pages }}#}
+    {#<br><br>#}
+    {##}
+    {#{% if venues.has_previous %}#}
+    {#	<a href="?page=1">&laquo First</a>#}
+    {#	<a href="?page={{ venues.previous_page_number }}">Previous</a>#}
+    {#{% endif %}#}
+    {#Page {{ venues.number }} of {{ venues.paginator.num_pages }}#}
+    {#{% if venues.has_next %}#}
+    {#	<a href="?page={{ venues.next_page_number }}">Next</a>#}
+    {#	<a href="?page={{ venues.paginator.num_pages }}">Last &raquo</a>#}
+    {#{% endif %}#}
+    {#-->#}
+
+{#    <nav aria-label="Page navigation example">#}
+{#        <ul class="pagination justify-content-center">#}
+{#            <li class="page-item">#}
+                {#    	{% if venues.has_previous %}#}
+                {#    	<a class="page-link" href="?page=1" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>#}
+                {#    </li>#}
+                {#    <li class="page-item">#}
+                {#    	<a class="page-link" href="?page={{ venues.previous_page_number }}">Previous page</a>#}
+                {#    	{% endif %}#}
+{#            </li>#}
+            {#    <li class="page-item">#}
+            {#    	<button class="btn btn-success" type="reset">Page {{ venues.number }} of {{ venues.paginator.num_pages }}</button>#}
+            {#    </li>#}
+            {#    <li class="page-item">#}
+            {#    	{% if venues.has_next %}#}
+            {#    	<a class="page-link" href="?page={{ venues.next_page_number }}">Next page</a>#}
+            {#    </li>#}
+            {#    <li class="page-item">#}
+            {#    	<a class="page-link" href="?page={{ venues.paginator.num_pages }}" aria-label="Next">#}
+            {#        	<span aria-hidden="true">&raquo;</span>#}
+            {#    	</a>#}
+            {#    	{% endif %}#}
+            {#    </li>#}
+{#        </ul>#}
+{#    </nav>#}
+
+    <br><br><br><br><br><br>
+
+{% endblock %}

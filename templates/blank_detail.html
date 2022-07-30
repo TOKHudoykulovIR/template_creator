@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <page size="A4">
+        <div class="card">
+            <div class="card-header">
+                {{ blank.id }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Blank - #{{ blank.id }}</h5>
+                <p class="card-text">
+                <ul>
+                    {{ blank.client }}<br>
+                    {{ blank.venue }}<br>
+                    {{ blank.event_manager }}<br>
+                </ul>
+                </p>
+            </div>
+        </div>
+
+    </page>
+
+{% endblock %}
