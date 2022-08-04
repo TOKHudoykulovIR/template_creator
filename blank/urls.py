@@ -14,6 +14,6 @@ urlpatterns = [
 ]
 
 admin.site.site_header = "Administration Panel"
-admin.site.site_url = "http://127.0.0.1:8000/blank"
+admin.site.site_url = "https://vmi955762.contaboserver.net/blank/"
 # admin.site.site_title = ''
 # admin.site.index_title = ""
