@@ -6,7 +6,7 @@ from .models import Blank, BlankMeta, Furniture
 
 @admin.register(Blank)
 class BlankAdmin(admin.ModelAdmin):
-    list_display = ['id', 'client']
+    list_display = ['id', 'client', 'event_manager']
 
 
 @admin.register(BlankMeta)
