@@ -89,7 +89,7 @@ class GeneratePdf(View):
         blank_meta = BlankMeta.objects.filter(blank=kwargs['blank_id'])
         furniture = Furniture.objects.filter(blank=kwargs['blank_id'])
 
-        file = open('templates/tempr.html', "w+")
+        file = open('templates/tempr.html', "w")
         file.write(render_to_string('result.html', {
             'data': data,
             'meta': blank_meta,
