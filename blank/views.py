@@ -1,3 +1,5 @@
+import time
+
 from django.forms import inlineformset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
@@ -8,7 +10,7 @@ from django.views.generic import View, CreateView
 from .process import html_to_pdf
 from django.urls import reverse
 from django.contrib import messages
-
+import os
 
 def home(request):
     context = {}
@@ -88,7 +90,12 @@ class GeneratePdf(View):
         print(data, data.event_manager)
         blank_meta = BlankMeta.objects.filter(blank=kwargs['blank_id'])
         furniture = Furniture.objects.filter(blank=kwargs['blank_id'])
-
+        if os.path.exists("templates/tempr.html"):
+            print(">")
+            os.remove("templates/tempr.html")
+            print("<")
+        else:
+            print("No")
         file = open('templates/tempr.html', "w")
         file.write(render_to_string('result.html', {
             'data': data,
@@ -98,6 +105,8 @@ class GeneratePdf(View):
         file.close()
         # Converting the HTML template into a PDF file a
         pdf = html_to_pdf('tempr.html')
+
+
         # rendering the template
         return HttpResponse(pdf, content_type='application/pdf')
 
