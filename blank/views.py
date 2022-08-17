@@ -90,22 +90,23 @@ class GeneratePdf(View):
         print(data, data.event_manager)
         blank_meta = BlankMeta.objects.filter(blank=kwargs['blank_id'])
         furniture = Furniture.objects.filter(blank=kwargs['blank_id'])
-        if os.path.exists("templates/tempr.html"):
-            print(">")
-            os.remove("templates/tempr.html")
-            print("<")
-        else:
-            print("No")
-        file = open('templates/tempr.html', "w")
-        file.write(render_to_string('result.html', {
+
+        # file = open('templates/tempr.html', "w")
+        # file.write(render_to_string('result.html', {
+        #     'data': data,
+        #     'meta': blank_meta,
+        #     'furniture': furniture
+        # }))
+        # file.close()
+
+        open('templates/tempr.html', "w").write(render_to_string('result.html', {
             'data': data,
             'meta': blank_meta,
             'furniture': furniture
         }))
-        file.close()
+
         # Converting the HTML template into a PDF file a
         pdf = html_to_pdf('tempr.html')
-
 
         # rendering the template
         return HttpResponse(pdf, content_type='application/pdf')
