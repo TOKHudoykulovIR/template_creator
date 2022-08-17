@@ -90,12 +90,12 @@ class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
         # logger.warning(kwargs)
         print(kwargs)
-        data = get_object_or_404(Blank, id=kwargs["blank_id"])
+        data = get_object_or_404(Blank, id=kwargs["blank_ido"])
         print(data)
         # logger.warning(data.event_manager)
 
-        blank_meta = BlankMeta.objects.filter(blank=kwargs['blank_id'])
-        furniture = Furniture.objects.filter(blank=kwargs['blank_id'])
+        blank_meta = BlankMeta.objects.filter(blank=kwargs['blank_ido'])
+        furniture = Furniture.objects.filter(blank=kwargs['blank_ido'])
 
         file = open('templates/tempr.html', "w")
         file.write(render_to_string('result.html', {

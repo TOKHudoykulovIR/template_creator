@@ -9,7 +9,7 @@ urlpatterns = [
     path('blank_delete/<blank_id>', delete_blank, name='blank-delete'),
     path('blank/<blank_id>', blank_detail, name='blank-detail'),
     # path('blank_pdf/<blank_id>', blank_pdf, name='blank-pdf'),
-    path('pdf/<blank_id>', GeneratePdf.as_view(), name='blank-pdf'),
+    path('pdf/<blank_ido>/', GeneratePdf.as_view(), name='blank-pdf'),
     path('blank_update/<blank_id>/', blank_update, name='blank-update'),
 ]
 
