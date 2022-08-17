@@ -6,10 +6,10 @@ from xhtml2pdf import pisa
 
 
 # defining the function to convert an HTML file to a PDF file
-def html_to_pdf(template_src, context_dict={}):
+def html_to_pdf(template_src):
     template = get_template(template_src)
-    html = template.render(context_dict)
-    print(html)
+    html = template.render()
+    # print(html)
     result = BytesIO()
     pdf = pisa.pisaDocument(BytesIO(html.encode("utf-8")), result)
     if not pdf.err:

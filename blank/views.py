@@ -107,7 +107,7 @@ class GeneratePdf(View):
 
         # Converting the HTML template into a PDF file a
         pdf = html_to_pdf('tempr.html')
-
+        print(pdf)
         # rendering the template
         return HttpResponse(pdf, content_type='application/pdf')
 
