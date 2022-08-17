@@ -1,3 +1,4 @@
+import logging
 import time
 
 from django.forms import inlineformset_factory
@@ -11,6 +12,9 @@ from .process import html_to_pdf
 from django.urls import reverse
 from django.contrib import messages
 import os
+
+logger = logging.getLogger(__name__)
+
 
 def home(request):
     context = {}
@@ -84,26 +88,22 @@ def delete_blank(request, blank_id):
 
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
-        print()
-        print(args, kwargs)
+        # logger.warning(kwargs)
+        print(kwargs)
         data = get_object_or_404(Blank, id=kwargs["blank_id"])
-        print(data, data.event_manager)
+        print(data)
+        # logger.warning(data.event_manager)
+
         blank_meta = BlankMeta.objects.filter(blank=kwargs['blank_id'])
         furniture = Furniture.objects.filter(blank=kwargs['blank_id'])
 
-        # file = open('templates/tempr.html', "w")
-        # file.write(render_to_string('result.html', {
-        #     'data': data,
-        #     'meta': blank_meta,
-        #     'furniture': furniture
-        # }))
-        # file.close()
-
-        open('templates/tempr.html', "w").write(render_to_string('result.html', {
+        file = open('templates/tempr.html', "w")
+        file.write(render_to_string('result.html', {
             'data': data,
             'meta': blank_meta,
             'furniture': furniture
         }))
+        file.close()
 
         # Converting the HTML template into a PDF file a
         pdf = html_to_pdf('tempr.html')
